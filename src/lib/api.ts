@@ -4,7 +4,9 @@ import { API_BASE_URL, ENDPOINTS } from "./constants";
 export async function getProducts(): Promise<Product[]> {
   try {
     const res = await fetch(`${API_BASE_URL}${ENDPOINTS.PRODUCTS}`, {
-      cache: "no-store",
+      // Use ISR so Next can statically generate pages and still refresh data.
+      // `revalidate: 60` tells Next to revalidate this fetch every 60 seconds.
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -21,7 +23,7 @@ export async function getProducts(): Promise<Product[]> {
 export async function getProduct(id: string): Promise<Product> {
   try {
     const res = await fetch(`${API_BASE_URL}${ENDPOINTS.PRODUCT_BY_ID(id)}`, {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -38,7 +40,7 @@ export async function getProduct(id: string): Promise<Product> {
 export async function getCategories(): Promise<string[]> {
   try {
     const res = await fetch(`${API_BASE_URL}${ENDPOINTS.CATEGORIES}`, {
-      cache: "no-store",
+      next: { revalidate: 60 },
     });
 
     if (!res.ok) {
@@ -58,9 +60,7 @@ export async function getProductsByCategory(
   try {
     const res = await fetch(
       `${API_BASE_URL}${ENDPOINTS.PRODUCTS_BY_CATEGORY(category)}`,
-      {
-        cache: "no-store",
-      }
+      { next: { revalidate: 60 } }
     );
 
     if (!res.ok) {

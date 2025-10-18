@@ -11,6 +11,7 @@ import {
 // import { ShoppingCart } from "lucide-react";
 import Toast from "@/components/ui/Toast";
 import Image from "next/image";
+import { formatPrice } from "@/lib/utils";
 
 interface ProductCardProps {
   product: Product;
@@ -51,14 +52,14 @@ export default function ProductCard({ product }: ProductCardProps) {
           <div className="mt-4 flex justify-between">
             <div>
               <h3 className="text-sm text-gray-700">
-                {/* <a href="#"> */}
                 <span aria-hidden="true" className="absolute inset-0"></span>
-                Artwork Tee
-                {/* </a> */}
+                {product.title}
               </h3>
-              <p className="mt-1 text-sm text-gray-500">Iso Dots</p>
+              <p className="mt-1 text-sm text-gray-500">{product.category}</p>
             </div>
-            <p className="text-sm font-medium text-gray-900">$35</p>
+            <p className="text-sm font-medium text-gray-900">
+              {formatPrice(product.price)}
+            </p>
           </div>
         </div>
       </Link>

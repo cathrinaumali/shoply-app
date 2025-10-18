@@ -5,6 +5,7 @@ import { useState } from "react";
 import SearchBar from "./SearchBar";
 import CartBadge from "./CartBadge";
 import CartDrawer from "../cart/CartDrawer";
+import { Suspense } from "react";
 
 export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
@@ -22,7 +23,9 @@ export default function Navbar() {
 
             {/* Search Bar */}
             <div className="hidden md:flex flex-1 mx-8">
-              <SearchBar />
+              <Suspense fallback={null}>
+                <SearchBar />
+              </Suspense>
             </div>
 
             {/* Navigation Links */}
@@ -64,7 +67,9 @@ export default function Navbar() {
 
           {/* Mobile Search Bar */}
           <div className="md:hidden pb-3">
-            <SearchBar />
+            <Suspense fallback={null}>
+              <SearchBar />
+            </Suspense>
           </div>
         </div>
       </nav>

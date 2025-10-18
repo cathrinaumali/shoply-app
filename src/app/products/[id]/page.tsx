@@ -2,9 +2,14 @@ import { getProduct } from "@/lib/api";
 import ProductDetailClient from "./ProductDetailClient";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 
-export async function generateMetadata({ params }: { params: { id: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   try {
-    const product = await getProduct(params.id);
+    const { id } = await params;
+    const product = await getProduct(id);
     return {
       title: `${product.title} - TMI Shop`,
       description: product.description,
@@ -19,10 +24,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
 export default async function ProductDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
   try {
-    const product = await getProduct(params.id);
+    const { id } = await params;
+    const product = await getProduct(id);
 
     return <ProductDetailClient product={product} />;
   } catch {

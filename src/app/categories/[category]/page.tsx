@@ -4,22 +4,32 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import EmptyState from "@/components/ui/EmptyState";
 
-export async function generateMetadata({ params }: { params: { category: string } }) {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
+  const { category } = await params;
   return {
-    title: `${capitalizeFirstLetter(params.category)} - TMI Shop`,
-    description: `Browse ${params.category} products`,
+    title: `${capitalizeFirstLetter(category)} - TMI Shop`,
+    description: `Browse ${category} products`,
   };
 }
 
-export default async function CategoryPage({ params }: { params: { category: string } }) {
+export default async function CategoryPage({
+  params,
+}: {
+  params: Promise<{ category: string }>;
+}) {
   try {
-    const products = await getProductsByCategory(params.category);
+    const { category } = await params;
+    const products = await getProductsByCategory(category);
 
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            {capitalizeFirstLetter(params.category)}
+            {capitalizeFirstLetter(category)}
           </h1>
           <p className="text-gray-600">Showing {products.length} products</p>
         </div>
@@ -28,7 +38,7 @@ export default async function CategoryPage({ params }: { params: { category: str
           <EmptyState
             icon="📦"
             title="No products found"
-            description={`No products available in ${params.category} category.`}
+            description={`No products available in ${category} category.`}
           />
         ) : (
           <ProductGrid products={products} />
