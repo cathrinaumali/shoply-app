@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
-import { Lato } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { CartProvider } from "@/context/CartContext";
 
-const lato = Lato({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["100", "300", "400", "700", "900"],
-  variable: "--font-lato",
+  weight: ["400", "500", "700"],
+  variable: "--font-dmsans",
   display: "swap",
 });
 
@@ -25,11 +25,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${lato.variable} flex flex-col min-h-screen bg-gray-50 font-sans`}
+        className={`${dmSans.variable} flex flex-col min-h-screen bg-gray-50 font-sans`}
       >
         <CartProvider>
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main>{children}</main>
           <Footer />
         </CartProvider>
       </body>

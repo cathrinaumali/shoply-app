@@ -4,22 +4,14 @@ import { capitalizeFirstLetter } from "@/lib/utils";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import EmptyState from "@/components/ui/EmptyState";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: { category: string };
-}) {
+export async function generateMetadata({ params }: { params: { category: string } }) {
   return {
     title: `${capitalizeFirstLetter(params.category)} - TMI Shop`,
     description: `Browse ${params.category} products`,
   };
 }
 
-export default async function CategoryPage({
-  params,
-}: {
-  params: { category: string };
-}) {
+export default async function CategoryPage({ params }: { params: { category: string } }) {
   try {
     const products = await getProductsByCategory(params.category);
 

@@ -37,6 +37,7 @@ export default function SearchResults() {
           setProducts([]);
         }
       } catch (err) {
+        console.error(err);
         setError("Failed to search products. Please try again.");
       } finally {
         setLoading(false);

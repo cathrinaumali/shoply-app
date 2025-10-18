@@ -28,6 +28,8 @@ export default async function ProductsPage() {
       </div>
     );
   } catch (error) {
+    // Log the error so the variable is used and to aid debugging
+    console.error(error);
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <ErrorMessage message="Failed to load products. Please try again later." />

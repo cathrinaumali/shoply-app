@@ -18,7 +18,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
       {/* Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 transition-opacity"
+          className="fixed inset-0 bg-opacity-50 z-40 transition-opacity"
           onClick={onClose}
         />
       )}
@@ -107,7 +107,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               <Link
                 href="/cart"
                 onClick={onClose}
-                className="block w-full bg-blue-600 text-white py-3 rounded-lg font-semibold text-center hover:bg-blue-700 transition-colors"
+                className="block w-full bg-neutral-900 text-white py-3 rounded-lg font-semibold text-center hover:bg-neutral-800 transition-colors"
               >
                 View Full Cart
               </Link>

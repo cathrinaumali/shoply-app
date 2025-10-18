@@ -17,7 +17,7 @@ export default function Button({
     "font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed";
 
   const variants = {
-    primary: "bg-blue-600 hover:bg-blue-700 text-white",
+    primary: "bg-neutral-900 hover:bg-neutral-800 text-white",
     secondary: "bg-gray-200 hover:bg-gray-300 text-gray-900",
     danger: "bg-red-600 hover:bg-red-700 text-white",
   };

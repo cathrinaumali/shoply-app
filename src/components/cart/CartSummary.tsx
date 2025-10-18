@@ -34,7 +34,7 @@ export default function CartSummary() {
         </div>
       </div>
 
-      <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg transition-colors">
+      <button className="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-semibold py-3 rounded-lg transition-colors">
         Proceed to Checkout
       </button>
 
