@@ -63,7 +63,7 @@ export default function ProductDetailClient({
           {/* Rating */}
           <div className="flex items-center mb-6">
             <div className="flex items-center">
-              <span className="text-yellow-500 text-xl mr-2">⭐</span>
+              <span className="text-yellow-500 text-l mr-2">⭐</span>
               <span className="text-lg font-semibold text-gray-900">
                 {product.rating.rate}
               </span>

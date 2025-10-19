@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { FilterBarProps } from "./types";
+import { CATEGORY_DISPLAY_MAP } from "@/lib/constants";
 
 export default function ProductFilterBar({
   categories,
@@ -16,6 +17,7 @@ export default function ProductFilterBar({
   onSortChange,
   resultsCount,
   onResetFilters,
+  hideCategory,
 }: FilterBarProps) {
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const [isPriceExpanded, setIsPriceExpanded] = useState(true);
@@ -216,55 +218,58 @@ export default function ProductFilterBar({
               </div>
 
               {/* Category Filter */}
-              <div className="space-y-3 md:col-span-1 lg:col-span-2">
-                <button
-                  onClick={() => setIsCategoryExpanded(!isCategoryExpanded)}
-                  className="flex items-center justify-between w-full text-left"
-                >
-                  <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
-                    Categories
-                  </h3>
-                  <svg
-                    className={`w-5 h-5 text-gray-400 transition-transform ${
-                      isCategoryExpanded ? "rotate-180" : ""
-                    }`}
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
+              {!hideCategory && (
+                <div className="space-y-3 md:col-span-1 lg:col-span-2">
+                  <button
+                    onClick={() => setIsCategoryExpanded(!isCategoryExpanded)}
+                    className="flex items-center justify-between w-full text-left"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M19 9l-7 7-7-7"
-                    />
-                  </svg>
-                </button>
+                    <h3 className="text-sm font-semibold text-gray-900 uppercase tracking-wide">
+                      Categories
+                    </h3>
+                    <svg
+                      className={`w-5 h-5 text-gray-400 transition-transform ${
+                        isCategoryExpanded ? "rotate-180" : ""
+                      }`}
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M19 9l-7 7-7-7"
+                      />
+                    </svg>
+                  </button>
 
-                {isCategoryExpanded && (
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    {categories.map((category) => {
-                      const isSelected = selectedCategories.includes(category);
-                      return (
-                        <button
-                          key={category}
-                          onClick={() => toggleCategory(category)}
-                          className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105 ${
-                            isSelected
-                              ? "bg-blue-600 text-white shadow-md"
-                              : "bg-gray-100 text-gray-700 hover:bg-gray-200"
-                          }`}
-                        >
-                          {category}
-                          {isSelected && (
-                            <span className="ml-2 inline-block">✓</span>
-                          )}
-                        </button>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+                  {isCategoryExpanded && (
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {categories.map((category) => {
+                        const isSelected =
+                          selectedCategories.includes(category);
+                        return (
+                          <button
+                            key={category}
+                            onClick={() => toggleCategory(category)}
+                            className={`px-4 py-2 rounded-lg text-sm font-medium transition-all transform hover:scale-105 ${
+                              isSelected
+                                ? "bg-blue-600 text-white shadow-md"
+                                : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                            }`}
+                          >
+                            {CATEGORY_DISPLAY_MAP[category]}
+                            {isSelected && (
+                              <span className="ml-2 inline-block">✓</span>
+                            )}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
 
             {/* Clear Filters Button */}

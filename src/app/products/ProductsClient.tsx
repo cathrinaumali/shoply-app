@@ -6,17 +6,12 @@ import ProductGrid from "@/components/products/ProductGrid";
 import { ProductsClientProps } from "./types";
 import { sortOptions, SORT_OPTIONS } from "@/app/products/constants";
 
-export default function ProductsClient({ products }: ProductsClientProps) {
+export default function ProductsClient({
+  products,
+  hideCategory,
+}: ProductsClientProps) {
   // Extract unique categories from products
-  const categories = Array.from(new Set(products.map((p) => p.category))).map(
-    (cat) => {
-      // Format category names nicely
-      return cat
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(" ");
-    }
-  );
+  const categories = Array.from(new Set(products.map((p) => p.category)));
 
   // Calculate price range
   const prices = products.map((p) => p.price);
@@ -90,16 +85,17 @@ export default function ProductsClient({ products }: ProductsClientProps) {
       <ProductFilterBar
         categories={categories}
         selectedCategories={selectedCategories}
-        onCategoryChange={setSelectedCategories}
         minPrice={minPrice}
         maxPrice={maxPrice}
         priceRange={priceRange}
-        onPriceRangeChange={handlePriceRangeChange}
         sortOptions={sortOptions}
         selectedSort={selectedSort}
-        onSortChange={handleSortChange}
         resultsCount={displayedProducts.length}
+        onCategoryChange={setSelectedCategories}
+        onPriceRangeChange={handlePriceRangeChange}
+        onSortChange={handleSortChange}
         onResetFilters={handleResetFilters}
+        hideCategory={hideCategory}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

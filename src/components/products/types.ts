@@ -30,4 +30,6 @@ export interface FilterBarProps {
 
   // Reset filters
   onResetFilters: () => void;
+
+  hideCategory?: boolean;
 }
