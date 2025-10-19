@@ -1,6 +1,22 @@
+"use client";
+
+import { useParams, usePathname } from "next/navigation";
 import Link from "next/link";
 
 export default function Footer() {
+  const params = useParams();
+  const pathname = usePathname();
+
+  const productId = params.id;
+
+  // Only show sticky bar on product detail pages (not on /products list)
+  const isProductDetailPage =
+    pathname.match(/^\/products\/[^/]+$/) && productId;
+
+  if (isProductDetailPage) {
+    return null;
+  }
+
   return (
     <footer className="bg-neutral-900 text-white mt-auto">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
