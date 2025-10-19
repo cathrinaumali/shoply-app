@@ -13,7 +13,7 @@ export default function ProductFilterBar({
   priceRange,
   onPriceRangeChange,
   sortOptions,
-  selectedSort,
+  // selectedSort,
   onSortChange,
   resultsCount,
   onResetFilters,
@@ -308,7 +308,7 @@ export default function ProductFilterBar({
                 key={category}
                 className="inline-flex items-center gap-1 px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-xs font-medium"
               >
-                {category}
+                {CATEGORY_DISPLAY_MAP[category]}
                 <button
                   onClick={() => toggleCategory(category)}
                   className="hover:bg-blue-200 rounded-full p-0.5 transition-colors"
