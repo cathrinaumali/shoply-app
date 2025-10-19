@@ -15,6 +15,9 @@ const dmSans = DM_Sans({
 export const metadata: Metadata = {
   title: "Shoply - Shop Simply",
   description: "Shop simply for quality products at great prices",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
