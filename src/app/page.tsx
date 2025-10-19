@@ -32,10 +32,10 @@ export default async function Home() {
         {/* Content */}
         <div className="relative z-10 text-center text-white px-4 max-w-7xl mx-auto">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-lg">
-            Welcome to TMI Shop
+            Welcome to Shoply
           </h1>
           <p className="text-xl md:text-2xl mb-8 text-blue-100 drop-shadow">
-            Discover amazing products at unbeatable prices
+            Shop simply for amazing products at unbeatable prices
           </p>
           <Link
             href="/products"

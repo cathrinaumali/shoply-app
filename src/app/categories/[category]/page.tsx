@@ -11,7 +11,7 @@ export async function generateMetadata({
 }) {
   const { category } = await params;
   return {
-    title: `${capitalizeFirstLetter(category)} - TMI Shop`,
+    title: `${capitalizeFirstLetter(category)} - Shoply`,
     description: `Browse ${category} products`,
   };
 }

@@ -8,5 +8,5 @@ export const ENDPOINTS = {
 };
 
 export const STORAGE_KEYS = {
-  CART: "tmi-cart",
+  CART: "shoply-cart",
 };

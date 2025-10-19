@@ -5,7 +5,7 @@ import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export const metadata = {
-  title: "All Products - TMI Shop",
+  title: "All Products - Shoply",
   description: "Browse all our products",
 };
 

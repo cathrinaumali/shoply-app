@@ -3,7 +3,7 @@ import SearchResults from "./SearchResults";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 export const metadata = {
-  title: "Search - TMI Shop",
+  title: "Search - Shoply",
   description: "Search for products",
 };
 

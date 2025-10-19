@@ -11,12 +11,12 @@ export async function generateMetadata({
     const { id } = await params;
     const product = await getProduct(id);
     return {
-      title: `${product.title} - TMI Shop`,
+      title: `${product.title} - Shoply`,
       description: product.description,
     };
   } catch {
     return {
-      title: "Product Not Found - TMI Shop",
+      title: "Product Not Found - Shoply",
     };
   }
 }

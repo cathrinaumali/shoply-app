@@ -13,8 +13,8 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "TMI Shop - E-Commerce Platform",
-  description: "Your trusted e-commerce platform for quality products",
+  title: "Shoply - Shop Simply",
+  description: "Shop simply for quality products at great prices",
 };
 
 export default function RootLayout({
@@ -29,7 +29,7 @@ export default function RootLayout({
       >
         <CartProvider>
           <Navbar />
-          <main>{children}</main>
+          <main className="flex-grow">{children}</main>
           <Footer />
         </CartProvider>
       </body>

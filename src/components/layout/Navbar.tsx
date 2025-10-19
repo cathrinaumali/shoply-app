@@ -17,8 +17,7 @@ export default function Navbar() {
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
-              <span className="text-2xl font-bold text-blue-600">TMI</span>
-              <span className="hidden sm:inline text-gray-700">Shop</span>
+              <span className="text-2xl font-bold text-blue-600">Shoply</span>
             </Link>
 
             {/* Search Bar */}

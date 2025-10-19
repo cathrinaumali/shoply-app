@@ -4,7 +4,7 @@ import { getCategories } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
 
 export const metadata = {
-  title: "Categories - TMI Shop",
+  title: "Categories - Shoply",
   description: "Browse products by category",
 };
 
