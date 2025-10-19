@@ -3,6 +3,8 @@ import ProductGrid from "@/components/products/ProductGrid";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import EmptyState from "@/components/ui/EmptyState";
+import { CATEGORY_DISPLAY_MAP, URL_CATEGORY_MAP } from "@/lib/constants";
+import ProductsClient from "@/app/products/ProductsClient";
 
 export async function generateMetadata({
   params,
@@ -23,13 +25,15 @@ export default async function CategoryPage({
 }) {
   try {
     const { category } = await params;
-    const products = await getProductsByCategory(category);
+    const extractedCategory = URL_CATEGORY_MAP[category] || category;
+    const products = await getProductsByCategory(extractedCategory);
 
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">
-            {capitalizeFirstLetter(category)}
+            {CATEGORY_DISPLAY_MAP[extractedCategory] ||
+              capitalizeFirstLetter(category)}
           </h1>
           <p className="text-gray-600">Showing {products.length} products</p>
         </div>
@@ -41,7 +45,7 @@ export default async function CategoryPage({
             description={`No products available in ${category} category.`}
           />
         ) : (
-          <ProductGrid products={products} />
+          <ProductsClient products={products} hideCategory />
         )}
       </div>
     );

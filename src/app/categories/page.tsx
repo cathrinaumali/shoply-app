@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { getCategories } from "@/lib/api";
 import { capitalizeFirstLetter } from "@/lib/utils";
+import { CATEGORY_DISPLAY_MAP, CATEGORY_URL_MAP } from "@/lib/constants";
 
 export const metadata = {
   title: "Categories - Shoply",
@@ -15,14 +16,14 @@ export default async function CategoriesPage() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl py-16 sm:py-24 lg:max-w-none lg:py-32">
         <div className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900">Shop by Category</h2>
+          <h2 className="text-2xl font-bold text-gray-900">All Categories</h2>
           <p className="text-gray-600">Browse products by category</p>
         </div>
         <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {categories.map((category) => (
             <Link
               key={category}
-              href={`/categories/${category}`}
+              href={`/categories/${CATEGORY_URL_MAP[category] || category}`}
               className="group relative"
             >
               <Image
@@ -42,7 +43,8 @@ export default async function CategoriesPage() {
               />
               <h3 className="mt-6 text-sm text-gray-500">
                 <span className="absolute inset-0"></span>
-                {capitalizeFirstLetter(category)}
+                {CATEGORY_DISPLAY_MAP[category] ||
+                  capitalizeFirstLetter(category)}{" "}
               </h3>
             </Link>
           ))}

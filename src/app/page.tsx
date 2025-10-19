@@ -3,6 +3,7 @@ import { getProducts, getCategories } from "@/lib/api";
 import ProductGrid from "@/components/products/ProductGrid";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import Image from "next/image";
+import { CATEGORY_DISPLAY_MAP, CATEGORY_URL_MAP } from "@/lib/constants";
 
 export default async function Home() {
   const [products, categories] = await Promise.all([
@@ -55,7 +56,7 @@ export default async function Home() {
               {categories.map((category) => (
                 <Link
                   key={category}
-                  href={`/categories/${category}`}
+                  href={`/categories/${CATEGORY_URL_MAP[category] || category}`}
                   className="group relative"
                 >
                   <Image
@@ -75,7 +76,8 @@ export default async function Home() {
                   />
                   <h3 className="mt-6 text-sm text-gray-500">
                     <span className="absolute inset-0"></span>
-                    {capitalizeFirstLetter(category)}
+                    {CATEGORY_DISPLAY_MAP[category] ||
+                      capitalizeFirstLetter(category)}
                   </h3>
                   <p className="text-base font-semibold text-gray-700">
                     {category === "electronics"

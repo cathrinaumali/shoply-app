@@ -3,26 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import { ProductCardProps } from "./types";
-import {
-  //  formatPrice,
-  truncateText,
-} from "@/lib/utils";
-// import { useCart } from "@/context/CartContext";
-// import { ShoppingCart } from "lucide-react";
+import { truncateText } from "@/lib/utils";
 import Toast from "@/components/ui/Toast";
 import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
 
 export default function ProductCard({ product }: ProductCardProps) {
-  // const { addToCart } = useCart();
   const [showToast, setShowToast] = useState(false);
-
-  // const handleAddToCart = (e: React.MouseEvent) => {
-  //   e.preventDefault(); // Prevent navigation to product detail
-  //   e.stopPropagation();
-  //   addToCart(product);
-  //   setShowToast(true);
-  // };
 
   return (
     <>
@@ -47,15 +34,24 @@ export default function ProductCard({ product }: ProductCardProps) {
 
           <div className="mt-4 flex justify-between">
             <div>
-              <h3 className="text-sm text-gray-700">
-                <span aria-hidden="true" className="absolute inset-0"></span>
+              <h3 className="text-sm text-gray-700 line-clamp-2">
+                <span aria-hidden="true" className="absolute inset-0 "></span>
                 {product.title}
               </h3>
-              <p className="mt-1 text-sm text-gray-500">{product.category}</p>
+              {/* <p className="mt-1 text-sm text-gray-500">{product.category}</p> */}
             </div>
             <p className="text-sm font-medium text-gray-900">
               {formatPrice(product.price)}
             </p>
+          </div>
+          {/* Rating */}
+          <div className="flex items-center mb-6">
+            <div className="flex items-center">
+              <span className="text-yellow-500 text-sm mr-2">⭐</span>
+              <span className="text-sm font-semibold text-gray-900">
+                {product.rating.rate}
+              </span>
+            </div>
           </div>
         </div>
       </Link>

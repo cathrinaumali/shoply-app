@@ -10,3 +10,24 @@ export const ENDPOINTS = {
 export const STORAGE_KEYS = {
   CART: "shoply-cart",
 };
+
+export const CATEGORY_DISPLAY_MAP: Record<string, string> = {
+  electronics: "Electronics",
+  jewelery: "Jewelry",
+  "men's clothing": "Men's Clothing",
+  "women's clothing": "Women's Clothing",
+};
+
+export const CATEGORY_URL_MAP: Record<string, string> = {
+  electronics: "electronics",
+  jewelery: "jewelry",
+  "men's clothing": "mens-clothing",
+  "women's clothing": "womens-clothing",
+};
+
+export const URL_CATEGORY_MAP: Record<string, string> = {
+  electronics: "electronics",
+  jewelry: "jewelery",
+  "mens-clothing": "men's clothing",
+  "womens-clothing": "women's clothing",
+};
