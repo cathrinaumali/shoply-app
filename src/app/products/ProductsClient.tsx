@@ -1,13 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import ProductFilterBar from "@/components/products/ProductFilterBar";
 import ProductGrid from "@/components/products/ProductGrid";
-import { Product } from "@/types/product";
-
-interface ProductsClientProps {
-  products: Product[];
-}
+import { ProductsClientProps } from "./types";
+import { sortOptions, SORT_OPTIONS } from "@/app/products/constants";
 
 export default function ProductsClient({ products }: ProductsClientProps) {
   // Extract unique categories from products
@@ -36,25 +33,56 @@ export default function ProductsClient({ products }: ProductsClientProps) {
   // Sort state
   const [selectedSort, setSelectedSort] = useState("featured");
 
-  // Sort options
-  const sortOptions = [
-    { value: "featured", label: "Featured" },
-    { value: "price-asc", label: "Price: Low to High" },
-    { value: "price-desc", label: "Price: High to Low" },
-    { value: "name-asc", label: "Name: A to Z" },
-    { value: "name-desc", label: "Name: Z to A" },
-    { value: "rating", label: "Highest Rated" },
-  ];
+  const displayedProducts = useMemo(() => {
+    const [minPrice, maxPrice] = priceRange;
+    const result = products.filter((product) => {
+      // Category filter
+      const matchesCategory =
+        selectedCategories.length === 0 ||
+        selectedCategories.includes(product.category);
 
-  // TODO: Implement filtering logic
-  const filteredProducts = products;
+      // Price filter
+      const matchesPrice =
+        product.price >= minPrice && product.price <= maxPrice;
 
-  // TODO: Implement sorting logic
-  const sortedProducts = filteredProducts;
+      return matchesCategory && matchesPrice;
+    });
+
+    // Sorting
+    switch (selectedSort) {
+      case SORT_OPTIONS.PRICE_ASC:
+        result.sort((a, b) => a.price - b.price);
+        break;
+      case SORT_OPTIONS.PRICE_DESC:
+        result.sort((a, b) => b.price - a.price);
+        break;
+      case SORT_OPTIONS.NAME_ASC:
+        result.sort((a, b) => a.title.localeCompare(b.title));
+        break;
+      case SORT_OPTIONS.NAME_DESC:
+        result.sort((a, b) => b.title.localeCompare(a.title));
+        break;
+      case SORT_OPTIONS.RATING:
+        result.sort((a, b) => b.rating.rate - a.rating.rate);
+        break;
+      default:
+        // featured - keep original order
+        break;
+    }
+    return result;
+  }, [priceRange, products, selectedSort, selectedCategories]);
 
   const handleResetFilters = () => {
     setSelectedCategories([]);
     setPriceRange([minPrice, maxPrice]);
+  };
+
+  const handlePriceRangeChange = (rangeValue: [number, number]) => {
+    setPriceRange(rangeValue);
+  };
+
+  const handleSortChange = (sortValue: string) => {
+    setSelectedSort(sortValue);
   };
 
   return (
@@ -66,16 +94,16 @@ export default function ProductsClient({ products }: ProductsClientProps) {
         minPrice={minPrice}
         maxPrice={maxPrice}
         priceRange={priceRange}
-        onPriceRangeChange={setPriceRange}
+        onPriceRangeChange={handlePriceRangeChange}
         sortOptions={sortOptions}
         selectedSort={selectedSort}
-        onSortChange={setSelectedSort}
-        resultsCount={sortedProducts.length}
+        onSortChange={handleSortChange}
+        resultsCount={displayedProducts.length}
         onResetFilters={handleResetFilters}
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <ProductGrid products={sortedProducts} />
+        <ProductGrid products={displayedProducts} />
       </div>
     </>
   );

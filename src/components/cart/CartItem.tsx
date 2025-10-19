@@ -1,15 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { CartItem as CartItemType } from "@/types/cart";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import Button from "@/components/ui/Button";
-
-interface CartItemProps {
-  item: CartItemType;
-  compact?: boolean;
-}
+import { CartItemProps } from "./types";
 
 export default function CartItem({ item, compact = false }: CartItemProps) {
   const { updateQuantity, removeFromCart } = useCart();

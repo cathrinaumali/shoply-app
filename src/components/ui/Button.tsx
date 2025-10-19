@@ -1,10 +1,5 @@
 import React from "react";
-
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "secondary" | "danger";
-  size?: "sm" | "md" | "lg";
-  children: React.ReactNode;
-}
+import { ButtonProps } from "./types";
 
 export default function Button({
   variant = "primary",

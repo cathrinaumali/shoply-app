@@ -4,11 +4,7 @@ import { useCart } from "@/context/CartContext";
 import CartItem from "./CartItem";
 import Link from "next/link";
 import { formatCurrency } from "@/lib/utils";
-
-interface CartDrawerProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
+import { CartDrawerProps } from "./types";
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
   const { items, totalAmount, totalItems } = useCart();

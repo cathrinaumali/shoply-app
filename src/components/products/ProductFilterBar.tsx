@@ -1,30 +1,7 @@
 "use client";
 
 import { useState } from "react";
-
-export interface FilterBarProps {
-  // Categories
-  categories: string[];
-  selectedCategories: string[];
-  onCategoryChange: (categories: string[]) => void;
-
-  // Price Range
-  minPrice: number;
-  maxPrice: number;
-  priceRange: [number, number];
-  onPriceRangeChange: (range: [number, number]) => void;
-
-  // Sort
-  sortOptions: { value: string; label: string }[];
-  selectedSort: string;
-  onSortChange: (sort: string) => void;
-
-  // Results count
-  resultsCount: number;
-
-  // Reset filters
-  onResetFilters: () => void;
-}
+import { FilterBarProps } from "./types";
 
 export default function ProductFilterBar({
   categories,

@@ -2,12 +2,7 @@
 
 import { useEffect } from "react";
 import { X, CheckCircle } from "lucide-react";
-
-interface ToastProps {
-  message: string;
-  onClose: () => void;
-  duration?: number;
-}
+import { ToastProps } from "./types";
 
 export default function Toast({
   message,

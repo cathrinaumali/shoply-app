@@ -1,9 +1,5 @@
-import { Product } from "@/types/product";
 import ProductCard from "./ProductCard";
-
-interface ProductGridProps {
-  products: Product[];
-}
+import { ProductGridProps } from "./types";
 
 export default function ProductGrid({ products }: ProductGridProps) {
   return (

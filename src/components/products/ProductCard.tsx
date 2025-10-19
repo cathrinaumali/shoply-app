@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Product } from "@/types/product";
+import { ProductCardProps } from "./types";
 import {
   //  formatPrice,
   truncateText,
@@ -12,10 +12,6 @@ import {
 import Toast from "@/components/ui/Toast";
 import Image from "next/image";
 import { formatPrice } from "@/lib/utils";
-
-interface ProductCardProps {
-  product: Product;
-}
 
 export default function ProductCard({ product }: ProductCardProps) {
   // const { addToCart } = useCart();

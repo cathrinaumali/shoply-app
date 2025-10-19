@@ -3,14 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { Product } from "@/types/product";
+import { ProductDetailClientProps } from "../types";
 import { formatPrice } from "@/lib/utils";
 import { useCart } from "@/context/CartContext";
 import Button from "@/components/ui/Button";
-
-interface ProductDetailClientProps {
-  product: Product;
-}
 
 export default function ProductDetailClient({
   product,
