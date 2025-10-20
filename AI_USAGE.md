@@ -11,8 +11,8 @@
 
 ```
 ┌────────────────────────────────────────────────┐
-│ Human (Architecture & Logic Design):    60%    │
-│ AI (Code Implementation):               40%    │
+│ Human (Architecture & Logic Design):    65%    │
+│ AI (Code Implementation):               35%    │
 └────────────────────────────────────────────────┘
 ```
 
@@ -26,7 +26,7 @@
 | **User Flow Design** | 100% | 0% | Navigation, interactions, user journeys |
 | **Business Rules** | 100% | 0% | Filter logic, cart behavior, edge cases |
 | **Code Implementation** | 30% | 70% | Core logic & algorithms (human), boilerplate & UI (AI) |
-| **UI/UX Design** | 85% | 15% | Layout decisions, responsive strategy, styling choices |
+| **UI/UX Design** | 90% | 10% | Layout decisions, responsive strategy, loading states, styling choices |
 | **Testing & QA** | 95% | 5% | Manual testing, bug discovery, validation |
 | **Debugging** | 70% | 30% | Finding bugs (human), implementing fixes (AI) |
 ---
@@ -37,7 +37,7 @@
 
 **Tech Stack Selection:**
 - Chose Next.js 15 with App Router over Pages Router
-- Selected React 19 RC for cutting-edge features
+- Selected React 19 for modern features and improved performance
 - Decided on TypeScript strict mode for type safety
 - Picked Tailwind CSS v4 for utility-first styling
 - Chose Context API over Redux for simplicity
@@ -191,7 +191,7 @@ ProductGrid (display)
 - **Dark Mode Bug:** iOS devices? Force light mode in CSS
 - **Search Performance:** Typing fast? Debounce to reduce API calls
 - **Price Calculations:** Decimal precision? Use proper rounding
-- **Loading States:** API slow? Show loading spinner with message
+- **Loading States:** Skeleton loaders matching actual layouts for better perceived performance
 
 ---
 
@@ -205,6 +205,7 @@ ProductGrid (display)
 - **localStorage Strategy:** Only sync on actual cart changes
 - **Component Split:** Server Components for static content, Client for interactivity
 - **Conditional Rendering:** lg:hidden for mobile-only components (CSS, not JS)
+- **Skeleton Loaders:** Content-aware loading states that match actual layouts for better UX
 
 ---
 
@@ -223,6 +224,46 @@ Desktop: > 1024px   → Multi-column, hover effects, inline controls
 - Hamburger menu navigation
 - Cart drawer (slide-in, not full page)
 - Price + quantity in sticky bar
+
+---
+
+### **8. Loading State & UX Strategy**
+
+**Skeleton Loader Architecture:**
+```
+Instead of generic spinners → Content-aware skeleton loaders
+Why? Better perceived performance & reduced layout shift
+```
+
+**My Design Decisions:**
+- **ProductSkeleton:** Reusable component matching ProductCard dimensions
+- **Page-Specific Skeletons:** Each page has layout-matching skeleton
+  - Products: Grid of 8 product skeletons
+  - Search: Header + results grid skeleton
+  - Product Detail: Full layout skeleton (image, info, buttons)
+  - Cart: Item list + summary sidebar skeleton
+  - Categories: Grid of category card skeletons
+
+**Implementation Strategy:**
+```typescript
+// Pattern I designed:
+<Suspense fallback={<PageSpecificSkeleton />}>
+  <AsyncComponent />
+</Suspense>
+
+// Benefits:
+- Immediate visual feedback
+- Matches actual content layout
+- Reduces perceived loading time
+- No layout shift when content loads
+- Maintains responsive behavior
+```
+
+**Visual Design Choices:**
+- Pulse animation for skeleton elements
+- Matching dimensions to actual components
+- Proper spacing and grid layouts
+- Responsive skeleton behavior (mobile/desktop)
 
 ---
 
@@ -315,8 +356,8 @@ Desktop: > 1024px   → Multi-column, hover effects, inline controls
 ## 📋 Conclusion
 
 **This project represents:**
-- **60% strategic thinking, logic design, and architecture** (Human)
-- **40% code implementation and typing** (AI)
+- **65% strategic thinking, logic design, and architecture** (Human)
+- **35% code implementation and typing** (AI)
 - **100% accountability and ownership** (Human)
 
 **I designed every system, architected every flow, and made every technical decision. AI was my implementation assistant, not my designer.**

@@ -18,6 +18,28 @@ export const metadata: Metadata = {
   icons: {
     icon: "/favicon.svg",
   },
+  openGraph: {
+    title: "Shoply - Shop Simply",
+    description: "Shop simply for quality products at great prices",
+    url: "https://shoply-app-nine.vercel.app",
+    siteName: "Shoply",
+    images: [
+      {
+        url: "/hero.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Shoply E-Commerce",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shoply - Shop Simply",
+    description: "Shop simply for quality products at great prices",
+    images: ["/hero.jpg"],
+  },
 };
 
 export default function RootLayout({

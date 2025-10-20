@@ -4,17 +4,13 @@ import { useCart } from "@/context/CartContext";
 import CartItem from "@/components/cart/CartItem";
 import CartSummary from "@/components/cart/CartSummary";
 import EmptyCart from "@/components/cart/EmptyCart";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import CartPageSkeleton from "./CartPageSkeleton";
 
 export default function CartPage() {
   const { items, isLoaded } = useCart();
 
   if (!isLoaded) {
-    return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <LoadingSpinner size="lg" />
-      </div>
-    );
+    return <CartPageSkeleton />;
   }
 
   if (items.length === 0) {
