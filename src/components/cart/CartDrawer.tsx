@@ -7,7 +7,7 @@ import { formatCurrency } from "@/lib/utils";
 import { CartDrawerProps } from "./types";
 
 export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
-  const { items, totalAmount, totalItems } = useCart();
+  const { items, totalAmount, totalCartItems } = useCart();
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b">
           <h2 className="text-xl font-bold text-gray-800">
-            Shopping Cart ({totalItems})
+            Shopping Cart ({totalCartItems})
           </h2>
           <button
             onClick={onClose}
@@ -107,12 +107,14 @@ export default function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
               >
                 View Full Cart
               </Link>
-              <button
-                onClick={onClose}
-                className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
-              >
-                Continue Shopping
-              </button>
+              <Link href="/products">
+                <button
+                  onClick={onClose}
+                  className="block w-full bg-gray-100 text-gray-700 py-3 rounded-lg font-semibold hover:bg-gray-200 transition-colors cursor-pointer"
+                >
+                  Continue Shopping
+                </button>
+              </Link>
             </div>
           </div>
         )}

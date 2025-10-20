@@ -9,6 +9,7 @@ import { STORAGE_KEYS } from "@/lib/constants";
 interface CartContextType {
   items: CartItem[];
   totalItems: number;
+  totalCartItems: number;
   totalAmount: number;
   addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (productId: number) => void;
@@ -97,6 +98,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         updateQuantity,
         clearCart,
         isLoaded,
+        totalCartItems: items.length,
       }}
     >
       {children}
