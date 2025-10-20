@@ -1,14 +1,35 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { Suspense, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
+
 import SearchBar from "./SearchBar";
 import CartBadge from "./CartBadge";
 import CartDrawer from "../cart/CartDrawer";
-import { Suspense } from "react";
 
 export default function Navbar() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const pathname = usePathname();
+  const router = useRouter();
+
+  // Close drawer when route changes
+  useEffect(() => {
+    setIsCartOpen(false);
+  }, [pathname]);
+
+  const handleCartClick = () => {
+    const isHomePage = pathname === "/";
+    const isCategoriesPage = pathname === "/categories";
+
+    if (isHomePage || isCategoriesPage) {
+      router.push("/cart");
+      return;
+    }
+    setIsCartOpen(true);
+  };
 
   return (
     <>
@@ -42,8 +63,8 @@ export default function Navbar() {
                 Categories
               </Link>
               <button
-                onClick={() => setIsCartOpen(true)}
-                className="relative focus:outline-none"
+                onClick={handleCartClick}
+                className="relative focus:outline-none cursor-pointer"
                 aria-label="Open cart"
               >
                 <svg
