@@ -6,6 +6,14 @@ import EmptyState from "@/components/ui/EmptyState";
 import { CATEGORY_DISPLAY_MAP, URL_CATEGORY_MAP } from "@/lib/constants";
 import ProductsClient from "@/app/products/ProductsClient";
 
+// Generate static params for all categories at build time
+export async function generateStaticParams() {
+  // Return all possible category routes
+  return Object.keys(URL_CATEGORY_MAP).map((category) => ({
+    category: category,
+  }));
+}
+
 export async function generateMetadata({
   params,
 }: {
