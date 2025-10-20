@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useCallback } from "react";
+import React, { createContext, useContext, useCallback, useMemo } from "react";
 import { CartItem } from "@/types/cart";
 import { Product } from "@/types/product";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
@@ -25,10 +25,15 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     []
   );
 
-  const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalAmount = items.reduce(
-    (sum, item) => sum + item.product.price * item.quantity,
-    0
+  const totalItems = useMemo(
+    () => items.reduce((sum, item) => sum + item.quantity, 0),
+    [items]
+  );
+
+  const totalAmount = useMemo(
+    () =>
+      items.reduce((sum, item) => sum + item.product.price * item.quantity, 0),
+    [items]
   );
 
   const addToCart = useCallback(
