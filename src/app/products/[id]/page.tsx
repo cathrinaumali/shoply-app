@@ -1,5 +1,7 @@
+import { Suspense } from "react";
 import { getProduct } from "@/lib/api";
 import ProductDetailClient from "./ProductDetailClient";
+import ProductDetailSkeleton from "./ProductDetailSkeleton";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export async function generateMetadata({
@@ -30,7 +32,11 @@ export default async function ProductDetailPage({
     const { id } = await params;
     const product = await getProduct(id);
 
-    return <ProductDetailClient product={product} />;
+    return (
+      <Suspense fallback={<ProductDetailSkeleton />}>
+        <ProductDetailClient product={product} />
+      </Suspense>
+    );
   } catch {
     return (
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">

@@ -2,7 +2,7 @@
 
 **Shoply** - Shop simply for amazing products at unbeatable prices
 
-A modern, responsive e-commerce web application built with Next.js 14, TypeScript, and Tailwind CSS.
+A modern, responsive e-commerce web application built with Next.js 15, React 19, TypeScript, and Tailwind CSS v4.
 
 ---
 
@@ -105,12 +105,18 @@ A modern, responsive e-commerce web application built with Next.js 14, TypeScrip
 - Clean, modern interface
 - Consistent color scheme 
 - Smooth transitions and animations
-- Loading spinners for async operations
+- **Skeleton loading states** for better perceived performance:
+  - Product grid skeletons
+  - Product detail skeletons
+  - Search results skeletons
+  - Cart page skeletons
+  - Category grid skeletons
 - Toast notifications for user actions
 - Empty states with helpful messages
 - Error handling with user-friendly messages
 - Accessible UI components
 - Hover effects and visual feedback
+- Custom favicon with brand identity
 
 ### 🔧 **Technical Features**
 - Server-side rendering (SSR) for product pages
@@ -194,45 +200,46 @@ shoply-app/
 │   │   ├── products/             # Products pages
 │   │   │   ├── page.tsx          # Product listing
 │   │   │   ├── ProductsClient.tsx
-│   │   │   ├── types.ts          # Product page types
-│   │   │   ├── constants.ts      # Sort options
 │   │   │   └── [id]/             # Product detail
 │   │   │       ├── page.tsx
-│   │   │       └── ProductDetailClient.tsx
+│   │   │       ├── ProductDetailClient.tsx
+│   │   │       └── ProductDetailSkeleton.tsx
 │   │   ├── categories/           # Category pages
 │   │   │   ├── page.tsx
 │   │   │   └── [category]/
 │   │   │       └── page.tsx
 │   │   ├── cart/                 # Cart page
-│   │   │   └── page.tsx
+│   │   │   ├── page.tsx
+│   │   │   └── CartPageSkeleton.tsx
 │   │   └── search/               # Search page
 │   │       ├── page.tsx
-│   │       └── SearchResults.tsx
+│   │       ├── SearchResults.tsx
+│   │       └── SearchResultsSkeleton.tsx
 │   │
 │   ├── components/               # Reusable components
 │   │   ├── layout/               # Layout components
 │   │   │   ├── Navbar.tsx
 │   │   │   ├── Footer.tsx
 │   │   │   ├── SearchBar.tsx
-│   │   │   └── CartBadge.tsx
+│   │   │   ├── CartBadge.tsx
+│   │   │   └── CategoryGridSkeleton.tsx
 │   │   ├── products/             # Product components
 │   │   │   ├── ProductGrid.tsx
 │   │   │   ├── ProductCard.tsx
 │   │   │   ├── ProductFilterBar.tsx
-│   │   │   └── types.ts
+│   │   │   ├── ProductGridSkeleton.tsx
+│   │   │   └── ProductSkeleton.tsx
 │   │   ├── cart/                 # Cart components
 │   │   │   ├── CartDrawer.tsx
 │   │   │   ├── CartItem.tsx
 │   │   │   ├── CartSummary.tsx
-│   │   │   ├── EmptyCart.tsx
-│   │   │   └── types.ts
+│   │   │   └── EmptyCart.tsx
 │   │   └── ui/                   # UI components
 │   │       ├── Button.tsx
 │   │       ├── Toast.tsx
 │   │       ├── LoadingSpinner.tsx
 │   │       ├── EmptyState.tsx
-│   │       ├── ErrorMessage.tsx
-│   │       └── types.ts
+│   │       └── ErrorMessage.tsx
 │   │
 │   ├── context/                  # React Context
 │   │   └── CartContext.tsx       # Cart state management
@@ -250,6 +257,7 @@ shoply-app/
 │       └── cart.ts               # Cart types
 │
 ├── public/                       # Static assets
+│   ├── favicon.svg               # Browser tab icon
 │   ├── hero.jpg                  # Hero image
 │   └── categories/               # Category images
 │       ├── electronics.jpg
@@ -262,6 +270,7 @@ shoply-app/
 ├── next.config.ts                # Next.js config
 ├── postcss.config.mjs            # PostCSS config
 ├── eslint.config.mjs             # ESLint config
+├── AI_USAGE.md                   # AI contribution documentation
 └── README.md                     # This file
 ```
 
@@ -427,7 +436,7 @@ shoply-app/
 - [Vercel](https://vercel.com/) for hosting (if deployed)
 - **Claude Sonnet 4.5** (via GitHub Copilot) for AI-assisted code implementation
 
-> **Note:** This project was built with AI assistance. See [AI_USAGE.md](AI_USAGE.md) for full transparency on the 60/40 human-AI contribution split, including details on what was designed vs. implemented.
+> **Note:** This project was built with AI assistance. See [AI_USAGE.md](AI_USAGE.md) for full transparency on the 65/35 human-AI contribution split, including details on what was designed vs. implemented.
 
 ---
 
