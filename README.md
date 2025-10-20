@@ -4,6 +4,8 @@
 
 A modern, responsive e-commerce web application built with Next.js 15, React 19, TypeScript, and Tailwind CSS v4.
 
+🌐 **[Live Demo](https://shoply-app-nine.vercel.app/)** - Try it now!
+
 ---
 
 ## 🚀 Features Implemented
