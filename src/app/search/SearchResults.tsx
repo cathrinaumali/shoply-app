@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import { Product } from "@/types/product";
 import { getProducts } from "@/lib/api";
 import ProductGrid from "@/components/products/ProductGrid";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+// import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import EmptyState from "@/components/ui/EmptyState";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import Link from "next/link";
 import Button from "@/components/ui/Button";
+import SearchResultsSkeleton from "./SearchResultsSkeleton";
 
 export default function SearchResults() {
   const searchParams = useSearchParams();
@@ -48,7 +49,7 @@ export default function SearchResults() {
   }, [query]);
 
   if (loading) {
-    return <LoadingSpinner size="lg" />;
+    return <SearchResultsSkeleton />;
   }
 
   if (error) {

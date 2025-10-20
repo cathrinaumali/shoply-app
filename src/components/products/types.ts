@@ -33,3 +33,7 @@ export interface FilterBarProps {
 
   hideCategory?: boolean;
 }
+
+export interface ProductGridSkeletonProps {
+  count?: number;
+}

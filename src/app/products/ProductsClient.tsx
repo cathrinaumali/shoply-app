@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { Suspense, useState, useMemo } from "react";
 import ProductFilterBar from "@/components/products/ProductFilterBar";
 import ProductGrid from "@/components/products/ProductGrid";
 import { ProductsClientProps } from "./types";
 import { sortOptions, SORT_OPTIONS } from "@/app/products/constants";
+import ProductGridSkeleton from "@/components/products/ProductGridSkeleton";
 
 export default function ProductsClient({
   products,
@@ -99,7 +100,9 @@ export default function ProductsClient({
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <ProductGrid products={displayedProducts} />
+        <Suspense fallback={<ProductGridSkeleton />}>
+          <ProductGrid products={displayedProducts} />
+        </Suspense>
       </div>
     </>
   );
