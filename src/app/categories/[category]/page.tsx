@@ -1,5 +1,5 @@
 import { getProductsByCategory } from "@/lib/api";
-import ProductGrid from "@/components/products/ProductGrid";
+// import ProductGrid from "@/components/products/ProductGrid";
 import { capitalizeFirstLetter } from "@/lib/utils";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 import EmptyState from "@/components/ui/EmptyState";
