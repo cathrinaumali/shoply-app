@@ -1,8 +1,21 @@
 import { Suspense } from "react";
-import { getProduct } from "@/lib/api";
+import { getProduct, getProducts } from "@/lib/api";
 import ProductDetailClient from "./ProductDetailClient";
 import ProductDetailSkeleton from "./ProductDetailSkeleton";
 import ErrorMessage from "@/components/ui/ErrorMessage";
+
+// Generate static params for all products at build time
+export async function generateStaticParams() {
+  try {
+    const products = await getProducts();
+    return products.map((product) => ({
+      id: product.id.toString(),
+    }));
+  } catch {
+    // Return empty array if API fails during build
+    return [];
+  }
+}
 
 export async function generateMetadata({
   params,
