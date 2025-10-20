@@ -1,7 +1,6 @@
-import { Suspense } from "react";
 import { getProducts } from "@/lib/api";
 import ProductsClient from "./ProductsClient";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+// import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import ErrorMessage from "@/components/ui/ErrorMessage";
 
 export const metadata = {
@@ -25,10 +24,7 @@ export default async function ProductsPage() {
             </p>
           </div>
         </div>
-
-        <Suspense fallback={<LoadingSpinner size="lg" />}>
-          <ProductsClient products={products} />
-        </Suspense>
+        <ProductsClient products={products} />
       </div>
     );
   } catch (error) {

@@ -1,6 +1,6 @@
 import { Suspense } from "react";
 import SearchResults from "./SearchResults";
-import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import SearchResultsSkeleton from "./SearchResultsSkeleton";
 
 export const metadata = {
   title: "Search - Shoply",
@@ -10,7 +10,7 @@ export const metadata = {
 export default function SearchPage() {
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <Suspense fallback={<LoadingSpinner size="lg" />}>
+      <Suspense fallback={<SearchResultsSkeleton />}>
         <SearchResults />
       </Suspense>
     </div>
