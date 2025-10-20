@@ -10,7 +10,7 @@ interface CartContextType {
   items: CartItem[];
   totalItems: number;
   totalAmount: number;
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity?: number) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
   clearCart: () => void;
@@ -37,7 +37,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
   );
 
   const addToCart = useCallback(
-    (product: Product) => {
+    (product: Product, quantity?: number) => {
       setItems((currentItems) => {
         const existingItem = currentItems.find(
           (item) => item.product.id === product.id
@@ -46,12 +46,12 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
         if (existingItem) {
           return currentItems.map((item) =>
             item.product.id === product.id
-              ? { ...item, quantity: item.quantity + 1 }
+              ? { ...item, quantity: item.quantity + (quantity || 1) }
               : item
           );
         }
 
-        return [...currentItems, { product, quantity: 1 }];
+        return [...currentItems, { product, quantity: quantity || 1 }];
       });
     },
     [setItems]

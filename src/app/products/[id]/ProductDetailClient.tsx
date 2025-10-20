@@ -20,7 +20,7 @@ export default function ProductDetailClient({
 
   const handleAddToCart = () => {
     for (let i = 0; i < quantity; i++) {
-      addToCart(product);
+      addToCart(product, quantity);
     }
     setAddedToCart(true);
     setTimeout(() => setAddedToCart(false), 2000);
