@@ -57,6 +57,10 @@ A modern, responsive e-commerce web application built with Next.js 15, React 19,
 ### 🛒 **Shopping Cart**
 - Persistent cart using localStorage
 - Cart badge with item count in navbar
+- Smart cart access behavior:
+  - **Home/Categories pages:** Cart icon navigates to cart page
+  - **Other pages:** Cart icon opens slide-in drawer
+  - Drawer auto-closes on navigation
 - Slide-in cart drawer:
   - View all cart items
   - Update quantities (+/-)
